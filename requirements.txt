@@ -9,7 +9,6 @@ djangorestframework==3.4.0
 env==0.1.0
 filelock==3.7.1
 gunicorn==19.7.0
-jsmin==2.2.2
 olefile==0.44
 pipenv==2022.7.4
 platformdirs==2.5.2
