@@ -10,6 +10,7 @@ env==0.1.0
 filelock==3.7.1
 gunicorn==19.7.0
 olefile==0.44
+Pillow==9.2.0
 pipenv==2022.7.4
 platformdirs==2.5.2
 psycopg2-binary==2.9.3
