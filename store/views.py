@@ -1,10 +1,14 @@
+from django.contrib.auth import login
 from django.shortcuts import render
 from django.http import JsonResponse
 import json
 import datetime
-
+from django.views.generic import CreateView, FormView
+from .forms import CustomerRegistrationForm, CustomerLoginForm
 from .models import *
 from .utils import cookieCart, cartData, guestOrder
+from django.urls import reverse_lazy
+from django.contrib.auth import authenticate, login
 
 
 def store(request):
@@ -95,3 +99,53 @@ def processOrder(request):
         )
 
     return JsonResponse('Payment submitted..', safe=False)
+
+
+class CustomerLoginView(FormView):
+    template_name = "store/customerlogin.html"
+    form_class = CustomerLoginForm
+    success_url = reverse_lazy('main')
+
+    def form_valid(self, form):
+        uname = form.cleaned_data.get('username')
+        p_word = form.cleaned_data.get('password')
+        user = authenticate(username=uname, password=p_word)
+        if user is not None and user.customer:
+            login(self.request, user)
+        else:
+            return render(self.request, self.template_name,
+                          {"form": self.form_class, "error": "Invalid username or password"})
+
+        return super().form_valid(form)
+
+        # to overide the success_url variable
+
+        def get_success_url(self):
+            if 'next' in self.request.GET:
+                next_url = self.request.GET['next']
+                return next_url
+            else:
+                return self.success_url
+
+
+class CustomerRegistration(CreateView):
+    template_name = "store/customerregistration.html"
+    form_class = CustomerRegistrationForm
+    success_url = reverse_lazy('store:main')
+
+    def form_valid(self, form):
+        username = form.cleaned_data.get('username')
+        password = form.cleaned_data.get('password')
+        email = form.cleaned_data.get('email')
+        user = User.objects.create_user(username, email, password)
+        form.instance.user = user
+        login(self.request, user)
+        return super().form_valid(form)
+
+    # to overide the success_url variable
+    def get_success_url(self):
+        if 'next' in self.request.GET:
+            next_url = self.request.GET['next']
+            return next_url
+        else:
+            return self.success_url

@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+
 class Customer(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)
     name = models.CharField(max_length=200, null=True)
@@ -8,6 +9,7 @@ class Customer(models.Model):
 
     def __str__(self):
         return self.name
+
 
 class Product(models.Model):
     name = models.CharField(max_length=200, null=True)
@@ -45,7 +47,6 @@ class Order(models.Model):
                 shipping = True
         return shipping
 
-
     @property
     def get_cart_total(self):
         orderitems = self.orderitem_set.all()
@@ -57,6 +58,7 @@ class Order(models.Model):
         orderitems = self.orderitem_set.all()
         total = sum([item.quantity for item in orderitems])
         return total
+
 
 class OrderItem(models.Model):
     product = models.ForeignKey(Product, on_delete=models.SET_NULL, null=True)

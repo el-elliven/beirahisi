@@ -1,0 +1,24 @@
+{% extends 'store/main.html'%}
+{% block title %}Customer Registration{% endblock %}
+
+{%block content%}
+<style>
+    .errorlist{
+        color: red;
+    }
+</style>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 mx-auto">
+            <h3>Register here</h3><hr>
+            <form action="" method="POST">
+                {% csrf_token %}
+                {{form.as_p}}
+                <button class="btn btn-primary">Register</button>
+                <p>If already have an account. <a href="{% url 'customerlogin' %}">Login here</a></p>
+            </form>
+        </div>
+    </div>
+
+</div>
+{%endblock%}
