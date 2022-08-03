@@ -164,8 +164,8 @@ STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 MEDIAFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-if 'DATABASE_URL' in os.environ:
-    import dj_database_url
-
-    DATABASES = {'default': dj_database_url.config()}
+# if 'DATABASE_URL' in os.environ:
+#     import dj_database_url
+#
+#     DATABASES = {'default': dj_database_url.config()}
 
