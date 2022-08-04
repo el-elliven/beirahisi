@@ -18,11 +18,6 @@ This is a fully functional eCommerce website with a beautiful user interface and
 4. JavaScript (Client-Side)
 5. Paypal Integration (Payment Method)
 
-## Demonstration
-
-<p align="left">
-  <img width="780" src="preview/demonstration.gif">
-</p>
 
 ## Preview
 
