@@ -3,11 +3,6 @@ from django.contrib.auth.models import User
 from .models import Customer
 
 
-class CustomerLoginForm(forms.Form):
-    username = forms.CharField(widget=forms.TextInput())
-    password = forms.CharField(widget=forms.PasswordInput())
-
-
 class CustomerRegistrationForm(forms.ModelForm):
     username = forms.CharField(widget=forms.TextInput())
     password = forms.CharField(widget=forms.PasswordInput())
@@ -15,7 +10,7 @@ class CustomerRegistrationForm(forms.ModelForm):
 
     class Meta:
         model = Customer
-        fields = ['username', 'name', 'email', 'password']
+        fields = ['username', 'name', 'email', 'password' ]
 
     def clean_username(self):
         uname = self.cleaned_data.get("username")
@@ -24,3 +19,7 @@ class CustomerRegistrationForm(forms.ModelForm):
                 "Customer already exists. Try another name")
 
         return uname
+
+class CustomerLoginForm(forms.Form):
+    username = forms.CharField(widget=forms.TextInput())
+    password = forms.CharField(widget=forms.PasswordInput())

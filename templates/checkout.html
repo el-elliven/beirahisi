@@ -1,4 +1,4 @@
-{% extends 'store/main.html' %}
+{% extends 'main.html' %}
 {% load static %}
 {% block content %}
      <div class="row">
@@ -51,7 +51,7 @@
 
 		<div class="col-lg-6">
 			<div class="box-element">
-				<a  class="btn btn-outline-dark" href="{% url 'cart' %}">&#x2190; Back to Cart</a>
+				<a  class="btn btn-outline-dark" href="{% url 'store:cart' %}">&#x2190; Back to Cart</a>
 				<hr>
 				<h3>Order Summary</h3>
 				<hr>
@@ -184,7 +184,7 @@
 				cart = {}
 				document.cookie ='cart=' + JSON.stringify(cart) + ";domain=;path=/"
 
-				window.location.href = "{% url 'store' %}"
+				window.location.href = "{% url 'store:home' %}"
 
 				})
 	    }

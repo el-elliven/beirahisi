@@ -1,4 +1,4 @@
-{% extends 'store/main.html'%}
+{% extends 'main.html'%}
 {% block title %}Customer Registration{% endblock %}
 
 {%block content%}
@@ -15,7 +15,7 @@
                 {% csrf_token %}
                 {{form.as_p}}
                 <button class="btn btn-primary">Register</button>
-                <p>If already have an account. <a href="{% url 'customerlogin' %}">Login here</a></p>
+                <p>If already have an account. <a href="{% url 'store:customerlogin' %}">Login here</a></p>
             </form>
         </div>
     </div>

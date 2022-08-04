@@ -1,4 +1,4 @@
-{% extends 'store/main.html'%}
+{% extends 'main.html'%}
 {%block title%}Login Page
 {%endblock%}
 
@@ -11,7 +11,7 @@
                 {% csrf_token %}
                 {{form.as_p}}
                 <button class="btn btn-primary">Sign In</button>
-                <p>If new customer, <a href="{% url 'customerregistration'%}{% if request.Get.next%}?next={{request.Get.next}}{% endif %}">Register here<a></p>
+                <p>If new customer, <a href="{% url 'store:customerregistration'%}{% if request.Get.next%}?next={{request.Get.next}}{% endif %}">Register here<a></p>
                 {% if error %}
                 <li style="color:red">{{error}}</li>
                 {% endif %}
